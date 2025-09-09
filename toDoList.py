@@ -31,4 +31,10 @@ class ToDoList:
         for line in reader:
             tempTask = Task(line['name'] , line['explanation'] , line['priority'])
             self.add_work(tempTask)
-    
+    def save(self):
+        self.myCSV.truncate(0)
+        writer = csv.writer(self.myCSV)
+        writer.writerow(['name' ,'explanation' , 'priority'])
+        for task in self.task_list:
+            writer.writerow([task.name , task.explanation , task.priority])
+        self.myCSV.close()
