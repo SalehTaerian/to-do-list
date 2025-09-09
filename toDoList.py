@@ -26,4 +26,9 @@ class ToDoList:
             print(work.name, "\n", work.explanation, "\n", work.priority)
             print("*" * 15)
 
+    def load(self):
+        reader = csv.DictReader(self.myCSV)
+        for line in reader:
+            tempTask = Task(line['name'] , line['explanation'] , line['priority'])
+            self.add_work(tempTask)
     
